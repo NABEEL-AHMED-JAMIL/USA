@@ -1,0 +1,51 @@
+Functional Interface:
+An Interface that contains only one abstract method is known as functional interface.
+It can have any number of default and static methods.
+It can also declare methods of object class.
+
+Optional
+Java introduced a new class Optional in Java 8. 
+It is a public final class which is used to deal with NullPointerException in Java application. 
+We must import java.util package to use this class. It provides methods to check the presence of value for particular variable
+
+What Is a Java Stream?
+A Java stream is a pipeline of functions that can be evaluated. Java streams are not a data structure and cannot mutate data; they can only transform data.
+
+Q:- Intermediate Operations
+
+filter() -  which allows elements that match the predicate,
+count() - which counts the number of items in a stream,
+map() - which applies a function in each element of Stream for transformation, and 
+collect() - which collects the final result of Stream processing into a Collection.
+***Hello guys, I have been writing about some important methods from Java SE 8  like map(), flatMap(), collect(), etc for quite some time, and today I'll share my experience with another useful method peek() from java.utill.stream.Stream class. 
+
+java-9
+Interface Private Methods
+we can create private methods inside an interface. 
+Interface allows us to declare private methods that help to share common code between non-abstract methods.
+
+Try With Resource Enhancement
+Java introduced try-with-resource feature in Java 7 that helps to close resource automatically after being used.
+In other words, we can say that we don't need to close resources (file, connection, network etc) explicitly, try-with-resource close that automatically by using AutoClosable interface.
+
+Factory Methods
+Factory methods are special type of static methods that are used to create unmodifiable instances of collections
+It is unmodifiable, so adding new element will throw java.lang.UnsupportedOperationException
+List<String> list = List.of("Java","JavaFX","Spring","Hibernate","JSP"); 
+Set<String> set = Set.of("Java","JavaFX","Spring","Hibernate","JSP");  
+
+takeWhile
+The takeWhile() method in Java streams is used to create a new stream consisting 
+of elements from the original stream that match a given predicate.
+
+The dropWhile() method in Java streams is the complement of takeWhile(). 
+It creates a new stream by discarding elements from the beginning of the original stream until a predicate is no longer satisfied, and then includes the remaining elements.
+
+Running Java File with single command
+One major change is that you don’t need to compile the java source file with javac tool first.
+You can directly run the file with java command and it implicitly compiles.
+
+HTTP Client
+The new HttpClient can be used either synchronously or asynchronously.
+A synchronous request blocks the current thread until the reponse is available.
+BodyHandlers define the expected type of response body (e.g. as string, byte-array or file):

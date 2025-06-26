@@ -1,0 +1,337 @@
+Q:- What is Spring Framwork?
+A:- Spring Framework is an open-source, lightweight, easy-to-build framework that can also be considered as a framework of frameworks as 
+it houses various frameworks like Dependency Injection, Spring MVC, Spring JDBC, Spring Hibernate, Spring AOP, EJB, JSF, etc. 
+
+Q:- How many type of autowiring in spring?
+A:- In Spring, there are several types of autowiring that help with dependency injection.
+
+1) @Autowired (Annotation-based Autowiring) Used to automatically inject dependencies by type.
+*	Works on fields, constructors, and setter methods. Can be combined with @Qualifier to resolve ambiguity.
+*	If the bean is optional and you use @Autowired(required = false).
+	
+	@Autowired
+	private MyService myService;
+
+2)* @Qualifier (Used with @Autowired) Helps in resolving conflicts when multiple beans of the same type exist.
+	Used to specify which bean should be injected
+
+3) Constructor-Based Autowiring	Uses constructor injection. Ensures immutability[not change] and helps in unit testing.
+
+@Component
+public class MyController {
+
+*   private final MyService myService;
+
+    @Autowired
+    public MyController(MyService myService) {
+        this.myService = myService;
+    }
+}
+
+4) Setter-Based Autowiring Uses a setter method for dependency injection Useful if the dependency is optional or can be changed after instantiation.
+
+@Component
+public class MyController {
+
+    private MyService myService;
+
+    @Autowired
+    public void setMyService(MyService myService) {
+        this.myService = myService;
+    }
+}
+
+**5) Field-Based Autowiring Injects dependency directly into the field (less preferred due to tight coupling and difficulty in testing).
+
+@Component
+public class MyController {
+	@Autowired
+*   private MyService myService;
+}
+
+Use @Autowired with constructor injection (preferred approach in modern Spring Boot). Use @Qualifier or @Primary when multiple beans exist.
+Avoid field injection unless necessary. XML-based autowiring is outdated; use annotations instead.
+
+Q:- What is Spring Core?
+A:- Spring Core is the foundation of the Spring Framework, providing the essential features that enable dependency injection (DI) and inversion of control (IoC).
+It is the core module that manages the lifecycle and configurations of beans in a Spring application.
+
+**Q:- IoC vs DI
+A:- Concept	Responsibility
+IoC (Inversion of Control)	Manages the bean lifecycle (creation, initialization, destruction).
+DI (Dependency Injection)	Decides how beans are used by injecting dependencies into classes.
+
+Q:- What is AOP (Aspect-Oriented Programming)?
+A:- AOP is a programming technique that allows you to add behavior (cross-cutting concerns) to your code without modifying the actual code.
+✅ Logging
+✅ Security (e.g., authentication & authorization)
+✅ Transaction Management
+✅ Exception Handling
+✅ Performance Monitoring
+
+Q:- Authentication vs. Authorization
+A:-
+Authentication: Verifies who the user is (e.g., login via username & password).
+Authorization: Determines what the user can do (e.g., access control based on roles).
+
+Q:- How maven work ?
+A:- Maven Repositories:
+*	Local Repository: Maven stores downloaded dependencies on your local machine. The default location is ~/.m2/repository.
+*	Remote Repository: Maven can also fetch dependencies from remote repositories, such as Maven Central or custom repositories.
+
+*mvn clean: Cleans the project (removes target/ directory).
+*mvn compile: Compiles the source code.
+*mvn package: Packages the project.
+*mvn install: Installs the project to the local repository.
+*mvn deploy: Deploys the project to a remote repository.
+
+Q:- What is GraphQL
+*GraphQL is a powerful alternative to REST APIs, offering more flexibility and efficiency by allowing clients to fetch only the data they need.
+If the build in date type not there we create the scalar to marsahl and unmarashl the request/response filed data
+*Resolvers fetch or modify data in GraphQL.
+*Scalars define primitive or custom data types like Date or Upload
+
+Q:- Jpa Repository
+A:- Repository<T, ID>  -->  CrudRepository<T, ID>  -->  PagingAndSortingRepository<T, ID>  -->  JpaRepository<T, ID>
+
+Q:- Spring Batch?
+A:- Spring Batch Workflow [Job -> Step -> [ItemReader -> ItemProcessor -> ItemWriter]]
+Job Launching: The job is triggered by a JobLauncher and create by JobBuilderFactory.
+Step Execution: A Step is a phase of a Job that encapsulates the processing logic and create by StepBuilderFectory.
+Each step processes a chunk of data.
+Chunk Processing: A chunk is read, processed, and written before moving to the next chunk.
+
+Q:- Type of job in spring batch
+A:- There are serveral spring batch job type.
+
+1) Simple Job (Sequential Execution)
+A simple job executes steps sequentially where each step processes its task and passes control to the next step.
+
+2) Parallel Job (Concurrent Steps)
+A parallel job runs multiple steps concurrently using a Flow and Split.
+
+3) Conditional Flow Job (Decision-Based Steps)
+Conditional jobs execute different steps based on the result of a preceding step using a Flow with Decider.
+
+4) Listener-Based Job (Hook Execution)
+Listener-based jobs execute pre/post hooks using JobListener or StepListener for additional control.
+
+**Q:- What is java serilization?
+A:- Java Serialization is the process of converting an object’s state into a byte stream, which can then be stored in a file, database, or sent over a network.
+The reverse process, called deserialization, converts the byte stream back into an object.
+**Transient Keyword – Used to exclude fields from serialization. private transient String password; // Will not be serialized
+**Serialization works on the instance (object) of a class. Since static fields belong to the class and not to any specific object, they are not part of the object’s state.
+
+Q:- SSO OIDC
+Benefits of SSO:
+✅ Improved User Experience – Users only log in once.
+✅ Enhanced Security – Centralized authentication and reduced risk of password fatigue.
+✅ Simplified Management – Easier access control for multiple applications.
+
+**Q:- Java-8 Points
+A:- Here are the detail for java 8
+✅ Interface Default and Static Methods
+✅ Method References (ContainingClass::methodName)
+✅ Optional<T> Optional<String> optional = Optional.empty();
+✅ Functional Interface
+✅ Lambda Expressions & Method References
+✅ Streams
+✅ New Date Time APIs
+✅ StringJoiner example
+✅ Base 64 (Encode & Decode)
+
+**Q:- Java-17 Points
+✅ Sealed Classes & Permits : Sealed classes allow developers to restrict which other classes or interfaces may extend or implement them.
+✅ Pattern Matching for Switch Expressions: Java 17 introduces more flexible and safer ways to use switch expressions using pattern matching.
+✅ Deprecate the Applet API for Removal 
+
+**Q:- What is a CORS error, why does it arise, and how do you fix it? 
+CORS stands for Cross-Origin Resource Sharing, a security feature built into browsers. 
+It blocks requests made from one origin (domain, protocol, or port) to another origin unless explicitly allowed by the server. 
+
+For example: 
+- Your frontend is hosted at `frontend.com`. 
+- Your backend API is hosted at `api.backend.com`. 
+
+The browser treats these as different origins and blocks the request unless it’s explicitly allowed. 
+
+Q:- What diffrent b.w RestClient and RestTemplate and WebClient.
+A:- 
+RestTemplate Synchronous and blocking. 
+The calling thread waits for the response and gets blocked until the entire response is received.
+Deprecated in Spring Boot 2.4+ (advised to use WebClient instead).
+
+WebClient (Asynchronous, Non-Blocking).
+Part of the Spring WebFlux module, built for reactive programming and optimized for scalability.
+Non-blocking and supports asynchronous execution. Can handle large numbers of concurrent requests.
+
+RestClient lternative to RestTemplate and WebClient.
+RestClient (Asynchronous, Non-Blocking).
+**Built on top of WebClient but with a cleaner
+
+**Q:- What is the difference between forEach and stream forEach?
+A:- The reason for the different results is that forEach() used directly on the list uses the custom iterator,
+while stream(). forEach() simply takes elements one by one from the list, ignoring the iterator.
+
+**Q:- What is Lambda expression?
+A:- Lambda expression (SAM(Single Abstract Method) Interface) @FunctionalInterface
+The Lambda expression is used to provide the implementation of an interface which has functional interface.
+It saves a lot of code. we don't need to define the method again for providing the implementation. 
+Java lambda expression is consisted of three components.
+1) Argument-list: It can be empty or non-empty as well.
+2) Arrow-token: It is used to link arguments-list and body of expression.
+3) Body: It contains expressions and statements for lambda expression.
+
+
+**Q:- Functional Interface (SAM)
+A:- An interface which has only one abstract method is called functional interface.
+Java provides an anotation @FunctionalInterface, which is used to declare an interface as functional interface.
+@FunctionalInterface It is optional annotation
+
+Example
+@FunctionalInterface
+public interface Runnable
+
+An Interface that contains exactly one abstract method is known as functional interface. 
+It can have any number of default, static methods but can contain only one abstract method.
+It can also declare methods of object class.
+Functional Interface is also known as Single Abstract Method Interfaces or SAM Interfaces.
+It is a new feature in Java, which helps to achieve functional programming approach.
+
+**Q:- Method Reference
+A:- Method reference is used to refer method of functional interface. It is compact and easy form of lambda expression.
+Each time when you are using lambda expression to just referring a method. You can replace your lambda expression with method reference. 
+
+-> method ref method should be same param type
+like f-interface have method with non argument method then ther reference of any of below should be non arg method
+
+Type of Method Reference
+1) static method
+2) instance method
+3) constrctuor
+
+**Q:- Stream API -> java.util.steam
+A:- Stream does not store elements. Its just pipline. its just pass the data from the data-strcture, I/0 from the terminal opertaion and computratio.
+It is created from sources like an array, ArrayList, List or any Collection, a file, or some I/O channel, stream pipeline.
+Stream elements can be used only once their life as they are fed to some operation if an attempt is made to access it later an IllegalStateException is thrown.
+Streams provide a very easy way to do parallel computation without having to worry about multi-threading implementations.
+In a stream pipeline there can be only one terminal operation that produces some desired single result or side effect,
+In simple stream intermeidate opration can be use more then 1 but terminal opertaion 1
+
+Stream.map() :
+The map is an intermediate operation that consumes a stream and produces a stream.
+It applies a given lambda expression or method reference to each element of the stream and converts it to a new stream.
+
+Stream.filter() :
+The filter is an intermediate operation that consumes a stream and produces a stream.
+It applies a given lambda expression to each element of the stream and filters the input stream to the new stream.
+
+Stream.reduce() : concatination
+Reduce is a terminal operation that consumes a stream, applies the lambda expression to each element and produces a single result and not a stream.
+
+Default Methods :
+Methods which are defined inside the interface and tagged with default are known as default methods. These methods are non-abstract methods.
+override default method also to provide more specific implementation for the method.
+
+Static Methods inside Java:
+Static methods inside the interface. Static methods are used to define utility methods.
+
+Q:- What different b.w abstract class and interface?
+A:- An interface and an abstract class is almost similar except that you can create constructor in the abstract class whereas you can't do this in interface.
+
+**Q:- What is JNDI?
+A:- It stands for Java Naming and Directory Interface. Mainly used in enterprise applications deployed on servers like Tomcat, JBoss, or WebLogic.	
+
+Q:- what is flatMap?
+A stream can hold complex data structures like Stream<List<String>>
+
+Q:- what is distinct?
+distinct() does not take any argument and returns the distinct elements in the stream, eliminating duplicates.
+It uses the equals() method of the elements to decide whether two elements are equal or not:
+
+Creating Streams [concat(), empty(), generate(), iterate(), of()
+Intermediate Operations [filter(), map(), flatMap(), distinct(), sorted(), peek(), limit(), skip()]
+Terminal Operations [forEach(), forEachOrdered(), toArray(), reduce(), collect(), min(), max(), 
+	count(), anyMatch(), allMatch(), noneMatch(), findFirst(), findAny()]
+	
+** Q:- What is Hashing
+A:- It is the process of converting an object into an integer value. The integer value helps in indexing and faster searches.
+A Hashtable is an array of a list. Each list is known as a bucket. 
+The position of the bucket is identified by calling the hashcode() method. A Hashtable contains values based on the key.
+
+** Q:- What is difference b.w Comparable and Comparator?
+A:-
+Comparable
+Comparable provides a single sorting sequence. In other words, we can sort the collection on the basis of a single element such as id, name, and price.
+Comparable affects the original class, i.e., the actual class is modified.
+Comparable provides compareTo() method to sort elements.
+Comparable is present in java.lang package.
+
+Comparator
+The Comparator provides multiple sorting sequences. In other words, we can sort the collection on the basis of multiple elements such as id, name, and price etc.
+Comparator doesn't affect the original class, i.e., the actual class is not modified.
+Comparator provides compare() method to sort elements.
+A Comparator is present in the java.util package.
+
+** Q:- What is difference b.w HashMap and Hashtable?
+A:- 
+HashMap
+HashMap is non synchronized. It is not-thread safe and can't be shared between many threads without proper synchronization code.
+HashMap allows one null key and multiple null values
+HashMap is fast.
+We can make the HashMap as synchronized by calling this code (Map m = Collections.synchronizedMap(hashMap))	
+
+Hashtable
+Hashtable is synchronized. It is thread-safe and can be shared with many threads.
+Hashtable doesn't allow any null key or value.
+Hashtable is slow.
+Hashtable is internally synchronized and can't be unsynchronized.
+
+** Q:- What is String?
+A:- String is basically an object that represents sequence of char values.
+An array of characters works same as Java string.
+char[] ch = {'j','a','v','a','t','p','o','i','n','t'};  
+String s=new String(ch); is same as: String s="javatpoint";  
+public final class String implements java.io.Serializable, Comparable<String>, CharSequence.
+The Java String is immutable which means it cannot be changed. Whenever we change any string, a new instance is created.
+For mutable strings, you can use StringBuffer and StringBuilder classes.
+String is slow and consumes more memory when we concatenate too many strings because every time it creates new instance.
+String class uses String constant pool. 
+
+** Q:- CharSequence Interface?
+A:- The CharSequence interface is used to represent the sequence of characters. String, StringBuffer and StringBuilder classes implement.
+
+
+** Q:- StringBuffer Class.
+A:- Java StringBuffer class is used to create mutable (modifiable) String objects.
+The StringBuffer class in Java is the same as String class except it is mutable i.e. it can be changed.
+StringBuffer class is thread-safe i.e. multiple threads cannot access it simultaneously. So it is safe and will result in an order.
+All method are synchronized. StringBuffer is fast and consumes less memory when we concatenate t strings.
+StringBuffer uses Heap memory
+
+** Q:- StringBuilder Class.
+A:- Java StringBuilder class is used to create mutable (modifiable) String. 
+The Java StringBuilder class is same as StringBuffer class except that it is non-synchronized.
+
+
+** Q:-Compare String.
+A:- There are three ways to compare String
+By Using equals() Method
+By Using == Operator
+By compareTo() Method
+
+By Using equals() Method
+The String class equals() method compares the original content of the string. It compares values of string for equality.
+
+By Using == operator
+The == operator compares references not values.
+
+
+Q:- What String trim() method do?
+The String class trim() method eliminates white spaces before and after the String.
+
+** why class is immutable?
+The instance variable of the class is final i.e. we cannot change the value of it after creating an object.
+**The class is final so we cannot create the subclass. 
+There is no setter methods i.e. we have no option to change the value of the instance variable.
+

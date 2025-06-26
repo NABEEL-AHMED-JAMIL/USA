@@ -1,0 +1,97 @@
+Q: What is Strings?
+A: String is basically an object that represents sequence of char values. An array of characters works as a string in Java.
+The java.lang.String class implements Serializable, Comparable and CharSequence interfaces.
+The Java String is immutable which means it cannot be changed. Whenever we change any string, a new instance is created.
+
+For example:
+char[] ch={'t','p','o','i','n','t'};    
+String s=new String(ch);    
+
+Q: What is CharSequence Interface?
+A: The CharSequence interface is used to represent the sequence of characters. String, StringBuffer and StringBuilder classes implement it.
+
+Q: How to create a string object?
+A: There are two ways to create String object:
+
+1) By string literal
+Java String literal is created by using double quotes.
+String s="welcome";
+
+Each time you create a string literal, the JVM checks the "string constant pool" first.
+If the string already exists in the pool, a reference to the pooled instance is returned.
+If the string doesn't exist in the pool, a new string instance is created and placed in the pool. For example:
+String s1="Welcome";  
+String s2="Welcome";//It doesn't create a new instance  
+
+***2) By new keyword
+String s=new String("Welcome");//creates two objects and one reference variable
+JVM will create a new string object in normal (non-pool) heap memory, and the literal "Welcome" will be placed in the string constant pool.
+The variable s will refer to the object in a heap (non-pool).
+
+Q: Java String compare?
+A: String comparision used in authentication (by the equals() method), sorting (by the compareTo() method), reference matching (by the == operator), etc.
+
+1) By Using equals() Method: The String class equals() method compares the original content of the string. It compares values of string for equality. 
+String class provides the following two methods: 
+Additionally, the equalsIgnoreCase() method performs a case-insensitive comparison.
+
+2) By Using == Operator: the == operator compares references rather than values.
+
+3) The compareTo() method in Java is used to compare two strings lexicographically (i.e., based on their Unicode values) to determine their relative ordering.
+The method is defined in the Comparable interface, which the String class implements.
+
+Q: What is StringBuffer?
+A: Java StringBuffer class is thread-safe, i.e., multiple threads cannot access it simultaneously. So, it is safe and will result in an order.
+
+Q: What is StringBuilder?
+A: Java StringBuilder class is used to create mutable (modifiable) String.
+The Java StringBuilder class is same as StringBuffer class except that it is non-synchronized.
+
+Q: How to create Immutable Class in Java?
+A: There are many immutable classes like String, Boolean, Byte, Short, Integer, Long, Float, Double etc.
+In short, all the wrapper classes and String class is immutable.
+We can also create immutable class by creating final class that have final data members
+***
+The instance variable of the class is final i.e. we cannot change the value of it after creating an object.
+The class is final so we cannot create the subclass.
+There is no setter methods i.e. we have no option to change the value of the instance variable.
+
+Q: What is Exception Handling in Java?
+A: The Exception Handling in Java is one of the powerful mechanism to handle the runtime errors so that the normal flow of the application can be maintained.
+Exception Handling is a mechanism to handle runtime errors such as ClassNotFoundException, IOException, SQLException, RemoteException, etc.
+
+Q: What is Exception in Java?
+A: In Java, an exception is an event that occurs during the execution of a program that disrupts the normal flow of instructions.
+These exceptions can occur for various reasons, such as invalid user input, file not found, or division by zero.
+
+Q: Types of Java Exceptions
+A: In Java, exceptions are categorized into two main types: checked exceptions and unchecked exceptions.
+Additionally, there is a third category known as errors.
+
+1) Checked Exceptions
+Checked exceptions are the exceptions that are checked at compile-time.
+This means that the compiler verifies that the code handles these exceptions either by catching them or declaring them in the method signature using the throws keyword.
+
+2) Unchecked Exceptions (Runtime Exceptions)
+Unchecked exceptions, also known as runtime exceptions, are not checked at compile-time. 
+These exceptions usually occur due to programming errors, such as logic errors or incorrect assumptions in the code. 
+They do not need to be declared in the method signature using the throws keyword, making it optional to handle them.
+
+NullPointerException: It is thrown when trying to access or call a method on an object reference that is null.
+ArrayIndexOutOfBoundsException: It occurs when we try to access an array element with an invalid index.
+ArithmeticException: It is thrown when an arithmetic operation fails, such as division by zero.
+IllegalArgumentException: It indicates that a method has been passed an illegal or inappropriate argument.
+
+finally
+The "finally" block is used to execute the necessary code of the program. It is executed whether an exception is handled or not.
+
+---
+Q:- How to create the expceiton handle in spring boot
+A: In spring boto we use custome class and extend with RuntimeException.
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+}
+Then we use [@ControllerAdvice, @ExceptionHandler(ResourceNotFoundException.class)] to handle the expcetion.
+---

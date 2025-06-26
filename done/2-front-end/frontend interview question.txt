@@ -1,0 +1,127 @@
+Angular
+--------
+Q:- What different b/w node and npm?.
+A:- 
+--
+Node.js (Same Like JDK)
+--
+Node.js is runtime environemnt same like (JAVA), which allow you to execute the js code.
+With node js we can create server side application, command line tool
+IOT project, its privode diffenrt moudle (HTTP, I/O, Networking)
+--
+(NPM) Node Package Manager (Same Like Maven)
+--
+1) npm is a package manager for Node.js, used primarily to install, share, and manage packages or modules of JavaScript code written by other developers.
+2) Npm is alos used to mange project dependencies.
+When you create a node.js project. you typically defind.a 'packag.json'
+file where you specify the dependencies your project needs. npm can then install these dependencies and manage their versions for you.
+Package Management: Allows you to install, update, and manage Node.js packages and dependencies.
+Version Control: Handles versioning and ensures that the right versions of dependencies are used.
+Scripts: Enables running scripts defined in the package.json file to automate tasks.
+Repository: npm hosts a vast repository of open-source packages (the npm registry).
+--
+NVM (Node Version Manager):
+NVM is a tool used for managing multiple installations of Node.js on a single machine.
+It allows developers to easily switch between different versions of Node.js installed on their system.
+This is particularly useful when working on projects that require specific versions of Node.js, 
+or when testing compatibility with different versions.
+--
+
+Q:- What is ngx sever?
+A:-
+Ngx server" typically refers to Nginx (pronounced "engine X"), which is a high-performance web server and reverse proxy server. It is known for its stability, rich feature set, simple configuration, and low resource consumption. Here's an overview of its primary functions and uses:
+
+Key Features of Nginx:
+
+1) Web Server:
+Serves static content efficiently.
+Handles a large number of simultaneous connections with low memory usage.
+Reverse Proxy:
+
+2) Acts as an intermediary for requests from clients seeking resources from servers.
+Balances the load among several backend servers to optimize resource usage, maximize throughput, reduce latency, and ensure fault tolerance.
+Load Balancing:
+
+3) Distributes incoming network traffic across multiple servers.
+Supports various load balancing algorithms such as round-robin, least connections, and IP hash.
+Caching:
+
+4) Can cache content to improve performance and reduce the load on backend servers.
+Supports fast and efficient content delivery by serving cached responses.
+Security Features:
+
+5) Provides SSL/TLS termination, ensuring secure connections.
+Can be configured with various security measures to protect against common web threats.
+HTTP/2 and gRPC:
+
+6) Supports HTTP/2 and gRPC, offering better performance and efficiency for modern web applications.
+Common Use Cases:
+Hosting Websites: Used to serve both static and dynamic content for websites.
+API Gateway: Acts as a gateway for APIs, managing and routing API requests to appropriate backend services.
+Microservices Architecture: Often used in microservices environments to handle routing and load balancing between services.
+Content Delivery Network (CDN): Forms the basis for CDNs by caching and delivering content closer to users.
+
+Q:- @NgModule
+@NgModule decorator states that the AppModule class is a type of NgModule.
+The decorator accepts declarations, imports, providers, and bootstrap.
+Here are the descriptions for each of them:
+declarations: The components in this module.
+imports: The modules that are required by the current module.
+providers: The service providers, if any.
+bootstrap: The root component that Angular creates and inserts into the index.html host web page.
+
+/**Layzi loading module*/
+const routes: Routes = [
+  { path: 'a', loadChildren: () => import('./modulea/modulea.module').then(m => m.ModuleaModule) },
+  { path: 'b', loadChildren: () => import('./moduleb/moduleb.module').then(m => m.ModulebModule) }
+];
+
+Q:- Angular 17: A Comprehensive Look at What’s New.
+A:- A Comprehensive Look.
+1) New Declarative Control Flow (@for, @if, @switch, @empty)
+=> Replaces *ngIf, *ngFor, and *ngSwitch directives.
+=> Uses cleaner syntax like @if, @for, and @switch.
+=> Improves code readability and maintainability.
+=> Offers a more intuitive way to control template flow.
+@for (product of products(); track product.id) {
+    <div class="card">
+        <h2 class="card-title">{{product.productName}}</h2>
+        […]
+    </div>
+    }
+@empty {
+    <p class="text-lg">No Products found!</p>
+}
+
+2) Deferrable Loading
+
+Angular 17’s Deferrable Loading (using @defer) lets you delay loading parts of your template until needed. Here’s the gist in under 10 lines:
+
+@defer Block: Wraps a section of your template that can be deferred.
+Lazy Loading: Delays loading the components, directives, and pipes within that section.
+Improved Initial Load: Reduces initial bundle size for faster page load.
+Triggers: Control when to load the deferred content – based on time, user interaction, or other conditions.
+Placeholders: Optionally define content to display while the deferred section loads.
+
+@defer(on timer(1000ms)){
+	<router-outlet></router-outlet>
+}
+
+@defer(on viewport){
+	<router-outlet></router-outlet>
+}@placeholder{
+	<div>data is available soon....</div>
+}
+
+Upgrade to Node js 18.13.0
+Angular 17 requires upgrading to Node.js version 18.13.0 or higher. Here’s why:
+
+Breaking Change: Node.js versions below 18.13.0 are incompatible with Angular 17.
+
+
+q:- How to Upgrade Angular v16 to Angular v17
+Upgrading from Angular 16 to 17 can be done with these steps:
+Update CLI Globally: Use npm install -g @angular/cli@17 to update the Angular CLI.
+Project Directory: Navigate to your Angular project’s directory.
+Run Update Command: Execute ng update @angular/core @angular/cli to update core packages.
+Further Updates: Depending on your project setup, you might need to update other dependencies. Refer to the official guide for details.

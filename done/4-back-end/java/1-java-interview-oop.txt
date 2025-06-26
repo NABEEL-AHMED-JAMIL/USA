@@ -1,0 +1,239 @@
+Q: What is purpose oop?
+A: The purpose of object oriented programming is use to implement real world entities,
+with the help of object, class, abstraction, inheritance, polymorphism.
+
+Q: what is object?
+A: Object means a real world entity such as a pen, chair, table, computer, watch.
+The object mean entity which have state and behavior is known as an object.
+An object can be defined as an instance of a class. It contains an address and takes up some space in memory.
+
+Q: What is class?
+A: A class is template or blueprint from which we can create objects. it is a logical entity, not a physical.
+its contain filed, method, constractor, block, neasted class and interafce.
+
+Q: What is filed?
+A: Varaible inside a class that indicate the state of object is call filed. They specify the data that will be stored in each class object.
+
+Q: What is methods?
+A: Methods are functions defined inside a class. when we create the object and call the method its some behaviors of the objects.
+Additionally, methods can be void (that is, they return nothing) or have different access modifiers. They can also return values.
+
+Q: What is constructors?
+A: Constructors are unique methods that are used to initialize class objects.
+When an object of the class is created using the new keyword, [they are called with the same name as the class]. 
+Constructors can initialize the fields of an object or carry out any additional setup that's required when an object is created.
+A Java constructor cannot be abstract, static, final, and synchronized.
+
+Q: What is block? [***]
+A: Within a class, Java allows two different kinds of blocks: [instance blocks, static blocks]. 
+Static blocks, which are usually used for static initialization, are only executed once when the class is loaded into memory.
+Instance blocks can be used to initialize instance variables and are executed each time a class object is generated.
+Example
+
+// Static Block execute as class is loaded into memory.
+Static {
+  System.out.println("Hellow Static.");
+}
+
+// Instance Block execute as object is generated.
+{
+  System.out.println("Helow Instance Block.");
+}
+
+Q: What is new keyword in Java? [***]
+A: In Java, an instance of a class (also referred to as an object) is created using the new keyword.
+The new keyword is used to allocate memory at runtime. All objects get memory in the Heap memory area.
+
+Q: How many way to initializing an Object in Java?
+A: Initializing an object means storing data in the object.
+There are the following three ways to initialize an object in Java:
+
+1) By Reference Variable: 
+
+A a = new A();
+a.apple = "banana";
+[
+	defult:Accessible in the same package,
+	public:Accessible from anywhere,
+	protected: Accessible in the same package and subclasses
+]
+
+2) By Method: we are creating the two objects of Student class and initializing the value to these objects by invoking the insertRecord method.
+
+A a = new A();
+a.fun("asdf", 1232);
+
+3) By Constructor: The concept of object initialization through a constructor is essential to object-oriented programming in Java.
+Special methods inside a class called constructors are called when an object of that class is created with the new keyword.
+It is not necessary to write a constructor for a class. Because Java compiler creates a default constructor if your class does not have any.
+
+A a = new A("adfad", "adfa");
+
+Q: What are the different ways to create an object in Java?
+
+1) By new Keyword: [ClassName obj = new ClassName();] 
+2) By newInstance() Method: [ClassName obj = (ClassName) Class.forName("ClassName").newInstance(); only non arg constractor]
+3) By clone() Method: [ClassName obj2 = (ClassName) obj1.clone(); The clone() method creates a copy of an existing object by performing a shallow copy.]
+
+Q: What is static method?
+A: A method that has static keyword is known as static method.
+In other words, a method that belongs to a class rather than an instance of a class is known as a static method.
+We can also create a static method by using the keyword static before the method name.
+The main advantage of a static method is that we can call it without creating an object.
+It can access static data members and also change the value of it.
+It is used to create an instance method. It is invoked by using the class name.
+
+Q: What is method overloading?
+A: Method overloading is a feature in Java that allows [multiple methods with the same name but different parameter lists to exist within the same class].
+static method can also be overloading.
+
+Q: What is method overriding?
+A: Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass.
+It is a key aspect of polymorphism in Java, allowing subclasses to customize or extend the behavior of inherited methods.
+static method can't be overriding.
+
+Example For Static Method:
+Parent p = new Child();
+p.show();  // ❗ Output: Parent's static show()
+
+Child c = new Child();
+c.show();  // ✅ Output: Child's static show()
+
+Q: What is Abstract Method?
+A: The method that does not has method body is known as abstract method. In other words, without an implementation is known as abstract method.
+It always declares in the abstract class. It means the class itself must be abstract if it has abstract method.
+To create an abstract method, we use the keyword abstract.
+
+Example: abstract void method_name();  
+
+Q: Java static keyword?
+A: The static keyword in Java is used for memory management mainly. We can apply static keyword with variables, methods, blocks and nested classes.
+The static keyword belongs to the class than an instance of the class.
+Restrictions for the Static Method
+1) The static method cannot use non-static data members or call a non-static method directly.
+2) this and super keyword cannot be used in static context.
+
+Q: What is this key word.
+A: In Java, this is a reference variable that refers to the current object.
+Usage of Java this keyword
+[
+	this can be used to refer current class instance variable.
+	this can be used to invoke current class method (implicitly)
+	this() can be used to invoke current class constructor.
+	this can be passed as an argument in the method call.
+	this can be passed as argument in the constructor call.
+	this can be used to return the current class instance from the method.
+]
+
+Q: What is Inheritance?
+A: Inheritance in Java is a mechanism in which one object acquires all the properties and behaviors of a parent object.
+For Method Overriding (so runtime polymorphism can be achieved).
+
+Q: Types of Inheritance in Java?
+A: There can be three types of inheritance in java: single, multilevel and hierarchical.
+Multiple inheritance is not supported in Java through class.
+In Java programming, multiple and hybrid inheritance is supported through interface only.
+
+Q: What is aggregation (HAS-A, Weak Ownership)?
+A: Aggregation is a special type of association where one class has a reference to another class, but the two can exist independently.
+It is a "has-a" relationship. It represents weak ownership (child can exist without parent).
+
+Q: What is association?
+Association defines a relationship between two separate classes, which is established through their objects.
+It simply means "uses-a" relationship. It can be one-to-one, one-to-many, many-to-one, or many-to-many.
+
+Q: What is coupling?
+A: Coupling refers to how tightly two classes or components are connected to each other.
+Tight Coupling: Classes are highly dependent on each other. Changes in one may break the other.
+Loose Coupling: Classes are mostly independent. This is preferred for better maintainability and flexibility.
+
+Q: Do Coupling, Association, Aggregation, and Composition come under Inheritance?
+A: No, they are related concepts in Object-Oriented Programming (OOP), but they do not fall under inheritance directly.
+They are different types of relationships or dependencies between classes.
+
+Q:- Rules for Java Method Overriding.
+=> Same Method Name: The overriding method in the subclass must have the same name as the method in the superclass that it is overriding.
+
+=> Same Parameters: The overriding method must have the same number and types of parameters as the method in the superclass. 
+This ensures compatibility and consistency with the method signature defined in the superclass.
+
+=> IS-A Relationship (Inheritance): Method overriding requires an IS-A relationship between the subclass and the superclass.
+This means that the subclass must inherit from the superclass, either directly or indirectly, to override its methods.
+Same Return Type or Covariant Return Type: The return type of the overriding method can be the same as the return type of the overridden method in the superclass,
+or it can be a subtype of the return type in the superclass. This is known as the covariant return type, introduced in Java 5.
+
+=> Access Modifier Restrictions: The access modifier of the overriding method must be the same as or less restrictive than the access modifier of the overridden method in the superclass.
+Specifically, a method declared as public in the superclass can be overridden as public or protected but not as private.
+Similarly, a method declared as protected in the superclass can be overridden as protected or public but not as private.
+A method declared as default (package-private) in the superclass can be overridden with default, protected, or public, but not as private.
+
+=> No Final Methods: Methods declared as final in the superclass cannot be overridden in the subclass.
+This is because final methods cannot be modified or extended.
+
+=> No Static Methods: Static methods in Java are resolved at compile time and cannot be overridden.
+Instead, they are hidden in the subclass if a method with the same signature is defined in the subclass.
+
+Q: Can we override Java main() method?
+A: No, because the Java main() method is designated as static, we are unable to override it.
+The main function in Java is declared as public static void main(String[] args) and acts as the program's starting point.
+
+Q: Java final variable?
+A: When a variable is declared as final, it is known as a final variable. Its value cannot be changed once initialized. It behaves like a constant.
+
+final datatype VARIABLE_NAME=VALUE;  
+
+Q: Java final Method
+A: A method declared as final is known as a final method. Subclasses cannot override the final method.
+When we compile the above code, it shows a compile-time error
+
+Q: Java final Class
+A: A class declared with the final keyword is known as a final class. Note that the final class cannot be inherited.
+
+Q: Can we declare a constructor final?
+A: No, because a constructor never inherited.
+
+Q: What is Polymorphism?
+A: Polymorphism  mean one task can achieved from different way.
+
+Types of Polymorphism
+There are two types of polymorphism in Java:
+
+1) Compile-time Polymorphism
+A method overloading is used to achieve compile-time polymorphism. 
+A class can have numerous methods with the same name but distinct parameter lists thanks to method overloading.
+The compiler uses the amount and kind of parameters provided to it during compilation to decide which method to call.
+
+2) Runtime Polymorphism.
+Runtime polymorphism or Dynamic Method Dispatch is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
+
+Q: Static Binding in Java?
+A: When type of the object is determined at compiled time(by the compiler), it is known as static binding.
+
+Q: Dynamic Binding in Java?
+A: When type of the object is determined at run-time, it is known as dynamic binding.
+
+Q: What is Abstraction in Java?
+A: Abstraction is a process of hiding the implementation details and showing only functionality to the user.
+Can have abstract methods (without body) and concrete methods (with body).
+Used when you want to provide a base class with default behavior.
+An abstract class must be declared with an abstract keyword.
+It can have abstract and non-abstract methods.
+It cannot be instantiated.
+It can have constructors and static methods also.
+It can have final methods which will force the subclass not to change the body of the method.
+
+Q: What Abstract Method in Java?
+A: A method which is declared as abstract and does not have implementation is known as an abstract method.
+
+Q: Why use a package?
+A: Avoid Naming Conflicts: Packages are used to avoid naming conflicts among class names.
+
+Q:- Encapsulation in Java
+A:- Encapsulation in Java is a process of wrapping code and data together into a single unit. A capsule is the perfect example of encapsulation because a capsule is a mixture of several medicines.
+Encapsulation helps to protect data and control access to it.
+It protects sensitive data from being access directly.
+It hides unnecessary data from the user of a class, and only shows the functionality of a class.
+Changes can be made internally without affecting the external interface.
+It is easier to scale applications because it provides flexibility to add or modify features without impacting the entire codebase.
+Encapsulated classes can be reused across projects.
+

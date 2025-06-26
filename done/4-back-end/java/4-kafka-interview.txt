@@ -1,0 +1,234 @@
+Q: What is Apache Kafka?
+A: A distributed event streaming platform that allows applications to publish and subscribe to streams of data in real-time.
+
+Q:- What is a Kafka Broker?
+A Kafka Broker is a server or not in the Kafka cluster that:
+
+✅ Stores topic data (messages)
+✅ Handles read/write requests from producers and consumers
+✅ Manages partitions and offsets
+✅ Handles replication of data
+
+Q: What is a Kafka Producer?
+A: A Producer is a service or program that sends messages to a Kafka topic.
+    @Bean
+    public Map<String, Object> producerConfigs() {
+        Map<String, Object> props = new HashMap<>(kafkaProperties.buildProducerProperties());
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.ACKS_CONFIG, "all");
+        props.put(ProducerConfig.RETRIES_CONFIG, 0);
+        return props;
+    }
+
+	@Bean
+	public ProducerFactory<String, String> producerFactory() {
+		return new DefaultKafkaProducerFactory<>(producerConfigs());
+	}
+	
+Q: What is Apache Avro?
+A: Apache Avro is a data serialization framework — it helps you encode data in a compact, fast, and schema-based format.
+Define .avsc schema file
+
+
+Q: Can we send header value in the producer?
+A: Yes, you can send headers in Kafka producer messages. Kafka headers allow you to attach metadata to a message,
+which can be useful for things like tracing, routing, or handling additional context during message processing.
+
+Q: What is topic?
+A: A Kafka topic is a category or feed name where records (messages) are stored and published by producers, and consumed by consumers.
+Think of a topic like a mailbox or folder where messages of a certain type are organized.
+
+Q:- How you send the value to topic?
+A:- Kafka producer send the message to the target topic[Topics Are Logical Channels] with the help of topic key.
+Each topic have unique key and partitions topic=loopsttt&partitions=[2]
+***Producer --> [user-events Topic] --> Consumer
+key is uuid which represent the unique id
+
+String topic = matcher.group(1);
+String partition = matcher.group(2);
+// random key for send the msg for partitions
+UUID uuid = UUID.randomUUID();
+String key = uuid.toString();
+Map<String, Object> payload = new HashMap<>();
+if (partition.contains(ProcessUtil.START)) {
+	future = this.kafkaTemplate.send(topic, key, payload.toString());
+} else {
+	future = this.kafkaTemplate.send(topic, Integer.valueOf(partition), key, payload.toString());
+}
+kafkaTemplate.send("user-activity", "user123", "Logged In");
+kafkaTemplate.send("user-activity", "user123", "Clicked Button");
+kafkaTemplate.send("user-activity", "user123", "Logged Out");
+➡ All three messages have the same key: user123
+➡ They will all go to the same partition
+➡ They are stored as three separate entries
+
+
+Q: Where you use the kafka in real life?
+A: I use this with ELK for loggin the data and ETL batch processing system.
+
+-----
+Q: What is authenticatio and autorization?
+A:
+Authentication
+Authentication is the process of verifying the identity of a user or system.
+When you log in with a username and password — you're proving that you are who you say you are.
+Other methods include OTP, biometrics, social login (Google, Facebook), etc.
+✅ If successful: System knows who you are.
+
+Authorization
+Authorization determines what permissions or access levels a verified user has.
+After logging in, you might:
+✅ View your dashboard
+✅ Edit your own profile
+
+----
+Q: What is UserDetails in spring boot?
+A: UserDetails is an interface provided by Spring Security that represents a custom user for your application.
+It defines the essential information that Spring Security needs to perform authentication and authorization.
+Collection<? extends GrantedAuthority> getAuthorities(); // User roles/permissions
+
+Q: Override the security configuration
+A: By default, the HTTP basic authentication, but we want to override it to perform the:
+Perform the authentication by finding the user in our database.
+Generate a JWT token when the authentication succeeds.
+
+Q: Code below show how to set the value of parse token in 'SecurityContextHolder'
+	if (jwt != null && this.jwtUtils.validateJwtToken(jwt)) {
+		String username = this.jwtUtils.getUserNameFromJwtToken(jwt);
+		UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+			userDetails, null, userDetails.getAuthorities());
+		authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+	}
+	
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter [abstract class]
+
+	http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(this.unauthorizedHandler).and()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+		.authorizeRequests().antMatchers("/auth.json/**", "/health", "/ws/**", "/user/**").permitAll()
+		.antMatchers("/api/v2/**").permitAll().anyRequest().authenticated();
+	http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
+
+Q: When CSRF protection is useful csrf()?
+A: Mainly when you use: Session-based authentication, Web apps with forms and cookies
+
+Q: What is Multithreading?
+A: Multithreading in Java is a process of executing multiple threads simultaneously.
+A thread is a lightweight sub-process, the smallest unit of processing. Threads use a shared memory area.
+***They don't allocate separate memory area so saves memory, and context-switching between the threads takes less time than process.
+It doesn't block the user because threads are independent and you can perform multiple operations at the same time.
+
+Q: Java Thread class?
+A: Java provides Thread class to achieve thread programming. Thread class provides constructors and methods to create and perform operations on a thread.
+Thread class extends Object class and implements Runnable interface.
+
+Q: Thread Life Cycle in Java (Thread States)
+A: In Java, a thread always exists in any one of the following states. These states are:
+1) New
+New: Whenever a new thread is created, it is always in the new state. 
+For a thread in the new state, the code has not been run yet and thus has not begun its execution.
+
+2) Active
+When a thread invokes the start() method, it moves from the new state to the active state.
+The active state contains two states within it: one is runnable, and the other is running.
+Runnable: Waiting for cpu 
+Running:  Getting the cpu
+
+3) Blocked / Waiting
+Whenever a thread is inactive for a span of time (not permanently) then, either the thread is in the blocked state or is in the waiting state.
+
+4) Timed Waiting
+
+5) Terminated
+
+Q: How to Create a Thread in Java?
+There are the following two ways to create a thread:
+By Extending Thread Class
+By Implementing Runnable Interface
+
+Q: Important Thread Class Methods
+A: Here are the imporant thread method.
+public void run(): is used to perform action for a thread.
+public void start(): starts the execution of the thread.JVM calls the run() method on the thread.
+public void sleep(long miliseconds): Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds.
+public void join(): waits for a thread to die.
+public Thread currentThread(): returns the reference of currently executing thread.
+public boolean isAlive(): tests if the thread is alive.
+
+Q: What is Thread.sleep()?
+A: The Thread.sleep() method is a static method of the Thread class that causes the currently executing thread to sleep (pause its execution) for a specified number of milliseconds.
+public static void sleep(long mls) throws InterruptedException   
+public static void sleep(long mls, int n) throws InterruptedException.
+
+Q: Can we start a thread twice?
+A: No. After starting a thread, it can never be started again. If you does so, an IllegalThreadStateException is thrown.
+In such case, thread will run once but for second time, it will throw exception.
+
+***Q: What if we call Java run() method directly instead start() method?
+A: Each thread starts in a separate call stack. Invoking the run() method from the main thread,
+the run() method goes onto the current call stack rather than at the beginning of a new call stack.
+
+Q: Joining Threads in Java
+The join() method in Java is provided by the java.lang.Thread class that permits one thread to wait until the other thread to finish its execution.
+
+Q: What is Thread Pool in Java?
+A: A Thread Pool in Java is a mechanism that manages a pool (collection) of worker threads to execute tasks efficiently.
+Instead of creating a new thread every time a task needs to be executed—which is resource-intensive—a thread pool reuses a fixed number of threads to perform many tasks over time.
+
+Q: How It Works:
+A: Fixed number of threads are created upfront and kept alive.
+When a task is submitted:
+If a thread is available, it picks up the task.
+If all threads are busy, the task is placed in a queue until a thread becomes free.
+Threads are reused, reducing the overhead of creating/destroying threads frequently.
+
+Q: Executors.newFixedThreadPool(int n)
+A: Creates a thread pool with a fixed number of threads. Best for limiting concurrency and managing predictable workloads.
+
+Q: Executors.newCachedThreadPool()
+A: Creates a pool that creates threads as needed, and reuses idle ones. Best for short-lived, many concurrent tasks.
+
+***Q: Executors.newSingleThreadExecutor()
+A: Creates a pool with a single worker thread. Best when tasks must run sequentially.
+
+---
+Use **execute()** when: You don’t need a result from the task. You don’t care about task completion status. You want simple fire-and-forget behavior.
+Use **submit()** when: You need a result from the task. You need to get the result of the task. You want to handle exceptions properly.
+You want to track task completion. You’re using Callable, not just Runnable.
+---
+ThreadPoolExecutor threadPool = new ThreadPoolExecutor(minThreads, maxThreads, threadLifeInMains, TimeUnit.MINUTES, blockingQueue, new ThreadPoolExecutor.CallerRunsPolicy());
+threadPool.setRejectedExecutionHandler((Runnable task, ThreadPoolExecutor executor) -> {
+	try {
+		logger.error("Task Rejected :- {}.", task.getClass().getCanonicalName());
+		Thread.sleep(1000); // if the task reject then wait for 1 mint
+	} catch (InterruptedException ex) {
+		logger.error("DAL Task Interrupted  :- {}.", ExceptionUtil.getRootCauseMessage(ex));
+	}
+});
+
+Q: Runnable vs Callable
+A: Both are interfaces used to define tasks for threads, but they have key differences:
+Feature | Runnable | Callable<V>
+Returns a result? | ❌ No | ✅ Yes (V)
+Can throw checked exceptions? | ❌ No | ✅ Yes
+Method to implement | run() | call()
+
+Q: Future<T>
+A: A Future represents the result of an asynchronous computation.
+
+Q: Garbage collector
+A: The Garbage collector of JVM collects only those objects that are created by new keyword.
+So if you have created any object without new, you can use finalize method to perform cleanup processing (destroying remaining objects).
+
+
+***Q: CompletableFuture?
+A: CompletableFuture is used for asynchronous programming in Java. Asynchronous programming is a means of writing non-blocking
+code by running a task on a separate thread than the main application thread and notifying the main thread about its progress, completion or failure.
+CompletableFuture.supplyAsync();
+future.thenApply();
+future.complete()

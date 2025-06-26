@@ -1,0 +1,96 @@
+Inversion Of Control (IOC) and Dependency Injection
+These are the design patterns that are used to remove dependency from the programming code. 
+IOC makes the code loosely coupled. In such case, there is no need to modify the code if our logic is moved to new environment.
+IOC container is responsible to inject the dependency. We provide metadata to the IOC container either by XML file or annotation.
+
+JPA is the interface while Hibernate is the implementation.
+
+Easy to test
+The Dependency Injection makes easier to test the application.
+The EJB or Struts application require server to run the application but Spring framework doesn't require server.'
+
+
+There are two types of IoC containers. They are:
+BeanFactory
+ApplicationContext
+
+org.springframework.beans.factory.BeanFactory and the org.springframework.context.ApplicationContext interfaces acts as the IoC container.
+The ApplicationContext interface is built on top of the BeanFactory interface.
+It adds some extra functionality than BeanFactory such as simple integration with Spring's AOP, message resource handling (for I18N), 
+event propagation, application layer specific context (e.g. WebApplicationContext) for web application.
+So it is better to use ApplicationContext than BeanFactory.
+
+BeanFactory factory=new XmlBeanFactory(resource);  
+ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+Spring AspectJ AOP implementation provides many annotations:
+
+@Aspect declares the class as aspect.
+@Pointcut declares the pointcut expression.
+
+Spring Framework is developed on two core concepts - Dependency Injection and Aspect Oriented Programming ( Spring AOP).
+Some of the common crosscutting concerns are logging, transaction management, data validation, 
+
+
+@Aspect declares the class as aspect.
+@Pointcut declares the pointcut expression.
+Advice: Advices are actions taken for a particular join point.
+In terms of programming, they are methods that get executed when a certain join point with matching pointcut is reached in the application.
+
+
+if we are going to integrate the hibernate application with spring, we don't need to create the hibernate.cfg.xml file. We can provide all the information in the applicationContext.xml file.
+
+createQuery: This method is used to create a JPQL (Java Persistence Query Language) query. JPQL is similar to SQL but operates on entity objects rather than database tables.
+createNativeQuery: This method is used to create a native SQL query. Native SQL queries are written in the native SQL dialect of the underlying database.
+
+All the JPA annotations are defined in the javax.persistence package.
+EntityManager implements the interfaces and life cycle defined by the JPA specification.
+SecurityContextHolder.getContext().getAuthentication().getPrincipal() cantain the UserDetails
+
+Spring Security comes with two useful interfaces:
+UserDetails: Provides core user information
+GrantedAuthority: Represents an authority granted to an Authentication object
+
+Authorization Server
+The authorization server is responsible for the verification of user identity and providing the tokens.
+Resource Server
+A Resource Server serves resources that are protected by the OAuth2 token.
+
+authorization framework that enables third-party applications to access protected resources on behalf of a user without requiring the user’s credentials.
+
+Servlet is a technology which is used to create a web application.
+Servlet is an API that provides many interfaces and classes including documentation.
+Servlet is an interface that must be implemented for creating any Servlet.
+Servlet is a class that extends the capabilities of the servers and responds to the incoming requests. It can respond to any requests.
+Servlet is a web component that is deployed on the server to create a dynamic web page.
+
+@ManagedBean  
+@RequestScoped  
+The JSF API provides components (inputText, commandButton etc)
+
+EJB is an acronym for enterprise java bean. 
+To run EJB application, you need an application server (EJB Container) such as Jboss, Glassfish, Weblogic, Websphere etc.
+
+Stateless Session Bean
+Stateless Session bean is a business object that represents business logic only. It doesn't have state (data).
+Stateful Session bean is a business object that represents business logic like stateless session bean. But, it maintains state (data).
+
+Hashing
+It is the process of converting an object into an integer value.
+The integer value helps in indexing and faster searches.
+
+hashCode(): This is the method of the object class. It returns the memory reference of the object in integer form.
+The value received from the method is used as the bucket number.
+The bucket number is the address of the element inside the map. Hash code of null Key is 0.
+
+
+Output: Output is another decorator in Angular used to create a custom event that a 
+child component can emit to its parent component. It allows a child component to send 
+data or trigger actions in its parent component.
+
+ViewChild: ViewChild is a decorator in Angular used to get the reference of a child component in the parent component.
+It allows a parent component to interact with its child components, accessing their properties, methods, and lifecycle events.
+This is particularly useful when you need to manipulate or communicate with a child component from its parent.
+
+@Scheduled(fixedRate = 5000) // Execute every 5 seconds
+@Scheduled(fixedDelay = 3000) // Execute every 3 seconds after the completion of the previous execution

@@ -1,0 +1,104 @@
+Java Concurrency is the ability to do more than one thing at the same time.
+The tasks are executed in an interleaved manner.The operating system switches between the tasks so frequently that 
+it appears to the users that they are being executed at the same physical instant.
+
+Multiprocessing - Multiple Processors/CPUs executing concurrently. The unit of concurrency here is a CPU.
+
+Multitasking - Multiple tasks/processes running concurrently on a single CPU.
+The operating system executes these tasks by switching between them very frequently. The unit of concurrency, in this case, is a Process.
+
+Multithreading - Multiple parts of the same program running concurrently.
+In this case, we go a step further and divide the same program into multiple parts/threads and run those threads concurrently.
+
+Thread
+A thread is a path of execution within a process. Every process has at least one thread - called the main thread.
+The main thread can create additional threads within the process.
+Threads within a process share the process’s resources including memory and open files. However, every thread has its own call stack.
+
+(Race Conditions) : Thread interference errors occur when multiple threads try to read and write a shared variable concurrently,
+and these read and write operations overlap in execution.
+
+By extending Thread class
+You can create a new thread simply by extending your class from Thread and overriding it’s run() method.
+The run() method contains the code that is executed inside the new thread.
+Once a thread is created, you can start it by calling the start() method.
+
+**public class Thread implements Runnable
+
+
+By providing a Runnable object
+Runnable interface is the primary template for any object that is intended to be executed by a thread. 
+It defines a single method run(), which is meant to contain the code that is executed by the thread.
+
+Any class whose instance needs to be executed by a thread should implement the Runnable interface.
+
+**The Thread class itself implements Runnable with an empty implementation of run() method.
+
+**Runnable or Thread, Which one to use?
+where you create a thread by extending from Thread class is very limited because once 
+you extend your class from Thread, you cannot extend from any other class since Java doesn’t allow multiple inheritance.
+Should always use Runnable object to create a thread. This method is more flexible. It allows your class to extend from any other class. 
+
+Pausing execution of a Thread using sleep()
+The sleep() method provided by Thread class allows you to pause the execution of the currently executing thread for the specified number of milliseconds.
+**sleep() method throws InterruptedException if any thread interrupts the current thread. InterruptedException is a checked exception and it must be handled.
+
+Commonly used methods of Thread class
+public void run(): is used to perform action for a thread.
+public void start(): starts the execution of the thread. JVM calls the run() method on the thread.
+public void sleep(long miliseconds): Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds.
+public void join(): waits for a thread to die.
+public void suspend(): is used to suspend the thread(depricated).
+public void resume(): is used to resume the suspended thread(depricated).
+public void stop(): is used to stop the thread(depricated)
+In Java, the wait() method is used to pause the execution of a thread until another thread signals that it can resume.
+
+When a thread calls wait() on an object, it releases the lock on the object and waits until 
+another thread calls notify() or notifyAll() on the same object.
+
+Priority: Priority of each thread lies between 1 to 10. If a thread has a higher priority, 
+it means that thread has got a better chance of getting picked up by the thread scheduler.
+
+Can we start a thread twice
+No. After starting a thread, it can never be started again. If you does so, an IllegalThreadStateException is thrown.
+In such case, thread will run once but for second time, it will throw exception.
+
+**Java Shutdown Hook
+A special construct that facilitates the developers to add some code that has to be run when the Java Virtual Machine (JVM) 
+is shutting down is known as the Java shutdown hook. The Java shutdown hook comes in very handy 
+in the cases where one needs to perform some special cleanup work when the JVM is shutting down. 
+Runtime.getRuntime().addShutdownHook(Thread), 
+
+**The JVM shuts down when:
+user presses ctrl+c on the command prompt
+System.exit(int) method is invoked
+
+**Java Garbage Collection
+garbage means unreferenced objects.
+It makes java memory efficient because garbage collector removes the unreferenced objects from heap memory.
+It is automatically done by the garbage collector(a part of JVM) so we don't need to make extra efforts.
+
+
+***finalize() method
+The finalize() method is invoked each time before the object is garbage collected. 
+This method can be used to perform cleanup processing. This method is defined in Object class as:
+protected void finalize(){}  
+
+
+***gc() method
+The gc() method is used to invoke the garbage collector to perform cleanup processing.
+The gc() is found in System and Runtime classes.
+
+
+**Synchronization in Java is the capability to control the access of multiple threads to any shared resource.
+Java Synchronization is better option where we want to allow only one thread to access the shared resource.
+Why use Synchronization?
+The synchronization is mainly used to
+To prevent thread interference.
+Can be use 
+Synchronized method.
+Synchronized block (Scope of synchronized block is smaller than the method).
+Static synchronization (If you make any static method as synchronized, the lock will be on the class not on object.).
+
+**Deadlock in Java is a part of multithreading. Deadlock can occur in a situation when a thread is waiting for an object lock,
+that is acquired by another thread and second thread is waiting for an object lock that is acquired by first thread.

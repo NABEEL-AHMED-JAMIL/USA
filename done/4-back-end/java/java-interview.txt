@@ -1,0 +1,232 @@
+Q:- Basic concepts of OOPs are:
+1) Object
+2) Class
+3) Inheritance
+4) Polymorphism
+5) Abstraction
+6 Encapsulation
+
+Q: Describe the detail for the main class.
+!) class keyword is used to declare a class in Java.
+!!) public keyword is an access modifier that represents visibility. It means it is visible to all.
+!!!) static is a keyword. If we declare any method as static, it is known as the static method. The core advantage of the static method is that there is no need to create an object to invoke the static method. The main() method is executed by the JVM, so it doesn't require creating an object to invoke the main() method. So, it saves memory.
+!v) void is the return type of the method. It means it doesn't return any value.
+v) main represents the starting point of the program.
+v!) String[] args or String args[] is used for command line argument. We will discuss it in coming section.
+v!!) System.out.println() is used to print statement. Here, System is a class, out is an object of the PrintStream class, println() is a method of the PrintStream class. We will discuss the internal working of System.out.println() statement in the coming section.
+
+Q: How to compile and run the above program.
+1) To compile:
+javac Simple.java
+2) To execute:
+java Simple
+
+Q) Can you save a Java source file by another name than the class name?
+Yes, if the class is not public. It is explained in the figure given below
+hello.java to public.class
+
+Q:JVM
+JVM (Java Virtual Machine) is an abstract machine.
+It is called a virtual machine because it doesn't physically exist.
+It is a specification that provides a runtime environment in which Java bytecode can be executed.
+It can also run those programs which are written in other languages and compiled to Java bytecode.
+
+Q:- The JVM performs the following main tasks:
+1) Loads code
+2) Verifies code
+3) Executes code
+4) Provides runtime environment
+
+
+1) Class(Method) Area
+Class(Method) Area stores per-class structures such as the runtime constant pool, 
+field and method data, the code for methods.
+2) Heap
+It is the runtime data area in which objects are allocated.
+3) Stack
+Java Stack stores frames. It holds local variables and partial results, and plays a part in method invocation and return.
+
+Q: Local Variable
+A variable declared inside the body of the method is called local variable.
+You can use this variable only within that method and the other methods in the class aren't even aware that the variable exists.
+A local variable cannot be defined with "static" keyword.
+
+Q:- Instance Variable
+A variable declared inside the class but outside the body of the method, is called an instance variable. It is not declared as static.
+It is called an instance variable because its value is instance-specific and is not shared among instances.
+
+Q:- Static variable
+A variable that is declared as static is called a static variable.
+It cannot be local. You can create a single copy of the static variable and share it among all the instances of the class.
+Memory allocation for static variables happens only once when the class is loaded in the memory.
+
+Q:- Data Types in Java
+There are two types of data types in Java:
+1) Primitive data types: The primitive data types include boolean, char, byte, short, int, long, float and double.
+2) Non-primitive data types: The non-primitive data types include Classes, Interfaces, and Arrays.
+
+Q:- What is OOP?
+Object means a real-world entity such as a pen, chair, table, computer, watch, etc.
+Object-Oriented Programming is a methodology or paradigm to design a program using classes and objects.
+
+Q:- OOPs (Object-Oriented Programming)
+Object-Oriented Programming is a methodology to design a program using classes and objects.
+Object :- Object can be defined as an instance of a class. An object contains an address and takes up some space in memory.
+Class :- A class can also be defined as a blueprint from which you can create an individual object. Class doesn't consume any space.
+Inheritance :- When one object use all the properties and behaviors of a parent object, it is known as inheritance. It provides code reusability. It is used to achieve runtime polymorphism.
+Polymorphism :- One task is performed in different ways, it is known as polymorphism. Method overloading and method overriding to achieve polymorphism.
+Abstraction :- Hiding internal details and showing functionality is known as abstraction.
+Encapsulation :- Wrapping code and data together into a single unit are known as encapsulation. For example, a capsule, it is wrapped with different medicines. 
+A java class is the example of encapsulation. Java bean is the fully encapsulated class because all the data members are private here.
+
+Association: - Association represents the relationship between the objects. Here, one object can be associated with one object or many objects.
+There can be four types of association between the objects: (Association can be undirectional or bidirectional.)
+One to One
+One to Many
+Many to One, and
+Many to Many
+
+Aggregation:- Aggregation is a way to achieve Association. 
+Aggregation represents the relationship where one object contains other objects as a part of its state. 
+It represents the weak relationship between objects.
+It is also termed as a has-a relationship in Java. Like, inheritance represents the is-a relationship.
+It is another way to reuse objects.
+
+Composition:- The composition is also a way to achieve Association.
+The composition represents the relationship where one object contains other objects as a part of its state.
+There is a strong relationship between the containing object and the dependent object.
+It is the state where containing objects do not have an independent existence.
+If you delete the parent object, all the child objects will be deleted automatically.
+
+
+Q:- An object has three characteristics:
+1) State: represents the data (value) of an object.
+2) Behavior: represents the behavior (functionality) of an object such as deposit, withdraw, etc.
+3) Identity: An object identity is typically implemented via a unique ID. The value of the ID is not visible to the external user. However, it is used internally by the JVM to identify each object uniquely.
+
+Q:- A class in Java can contain:
+1) Fields
+2) Methods
+3) Constructors
+4) Blocks
+5) Nested class and interface
+
+Q:- Instance variable in Java
+A variable which is created inside the class but outside the method is known as an instance variable.
+Instance variable doesn't get memory at compile time. It gets memory at runtime when an object or instance is created.
+That is why it is known as an instance variable.
+
+Q:- New keyword in Java
+The new keyword is used to allocate memory at runtime. All objects get memory in Heap memory area.
+
+Q:- Constructors in Java
+A constructor is a block of codes similar to the method. It is called when an instance of the class is created.
+At the time of calling constructor, memory for the object is allocated in the memory.
+It is a special type of method which is used to initialize the object.
+Every time an object is created using the new() keyword, at least one constructor is called.
+It calls a default constructor if there is no constructor available in the class.
+In such case, Java compiler provides a default constructor by default.
+There are two types of constructors in Java: no-arg constructor, and parameterized constructor.
+
+Q:- Rules for creating Java constructor
+There are two rules defined for the constructor.
+Constructor name must be the same as its class name
+A Constructor must have no explicit return type
+A Java constructor cannot be abstract, static, final, and synchronized
+Note: We can use access modifiers while declaring a constructor. It controls the object creation. In other words, we can have private, protected, public or default constructor in Java.
+
+Q:- Java static keyword
+A:- The static keyword in Java is used for memory management mainly.
+We can apply static keyword with variables, methods, blocks and nested classes.
+The static keyword belongs to the class than an instance of the class.
+***The static variable gets memory only once in the class area at the time of class loading.
+Java static property is shared to all objects.
+
+A static method belongs to the class rather than the object of a class.
+A static method can be invoked without the need for creating an instance of a class.
+A static method can access static data member and can change the value of it.
+
+Restrictions for the static method
+There are two main restrictions for the static method. They are:
+.The static method can not use non static data member or call non-static method directly.
+.this and super cannot be used in static context.
+Is used to initialize the static data member.
+It is executed before the main method at the time of classloading.
+
+Aggregation in Java
+If a class have an entity reference, it is known as Aggregation. Aggregation represents HAS-A relationship.
+
+Q:- Method Overloading.
+A class has multiple methods having same name but different in parameters,
+it is known as Method Overloading.
+**-> In Java, Method Overloading is not possible by changing the return type of the method only.
+
+Rules for Java Method Overriding
+The method must have the same name as in the parent class
+The method must have the same parameter as in the parent class.
+There must be an IS-A relationship (inheritance).
+
+Can we override java main method?
+No, because the main is a static method.
+Note: super() is added in each class constructor automatically by compiler if there is no super() or this().
+
+Q:- Can we declare a constructor final?
+No, because constructor is never inherited.
+
+String:-  The java.lang.String class implements Serializable, Comparable and CharSequence interfaces.
+
+String s="welcome";  
+Each time you create a string literal, the JVM checks the "string constant pool" first.
+If the string already exists in the pool, a reference to the pooled instance is returned.
+If the string doesn't exist in the pool, a new string instance is created and placed in the pool.
+
+String s=new String("Welcome");//creates two objects and one reference variable 
+In such case, JVM will create a new string object in normal (non-pool) heap memory,
+and the literal "Welcome" will be placed in the string constant pool.
+The variable s will refer to the object in a heap (non-pool).
+
+Q:- Thread Safe: As the String object is immutable we don't have to take care of
+the synchronization that is required while sharing an object across multiple threads.
+
+Q:- ***By Using == operator
+The == operator compares references not values.
+
+Q:- Java StringBuffer class is used to create mutable (modifiable) String objects. The StringBuffer class in Java is the same as String class except it is mutable i.e. it can be changed.
+Note: Java StringBuffer class is thread-safe i.e. multiple threads cannot access it simultaneously. So it is safe and will result in an order.
+
+Q:- Java StringBuilder Class
+Java StringBuilder class is used to create mutable (modifiable) String. The Java StringBuilder class is same as StringBuffer class except that it is non-synchronized. 
+
+Q:- Multithreading in Java
+Threads use a shared memory area. They don't allocate separate memory area so saves memory, and context-switching between the threads takes less time than process.
+
+Q:- Java Garbage Collection
+In java, garbage means unreferenced objects.
+Garbage Collection is process of reclaiming the runtime unused memory automatically. In other words, it is a way to destroy the unused objects.
+It makes java memory efficient because garbage collector removes the unreferenced objects from heap memory.
+
+Q:- gc() method
+The gc() method is used to invoke the garbage collector to perform cleanup processing. The gc() is found in System and Runtime classes.
+public static void gc(){}  
+Note: Garbage collection is performed by a daemon thread called Garbage Collector(GC). This thread calls the finalize() method before object is garbage collected.
+
+
+
+gc() method
+The gc() method is used to invoke the garbage collector to perform cleanup processing. The gc() is found in System and Runtime classes.
+
+public static void gc(){}  
+Note: Garbage collection is performed by a daemon thread called Garbage Collector(GC). This thread calls the finalize() method before object is garbage collected.
+
+gc() method
+The gc() method is used to invoke the garbage collector to perform cleanup processing. The gc() is found in System and Runtime classes.
+
+public static void gc(){}  
+Note: Garbage collection is performed by a daemon thread called Garbage Collector(GC). This thread calls the finalize() method before object is garbage collected.
+
+What is Hashing
+It is the process of converting an object into an integer value. The integer value helps in indexing and faster searches.
+
+What is HashMap
+HashMap is a part of the Java collection framework. It uses a technique called Hashing.
+It implements the map interface. It stores the data in the pair of Key and Value. HashMap contains an array of the nodes, and the node is represented as a class. It uses an array and LinkedList data structure internally for storing Key and Value. 

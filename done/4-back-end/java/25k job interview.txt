@@ -1,0 +1,13 @@
+Angular Interview Question
+---------------------------
+Webpack is a module bundler.
+Its main purpose is to bundle JavaScript files for usage in a browser,
+Can create a single bundle or multiple chunks that are asynchronously 
+loaded at runtime (to reduce initial loading time).
+Dependencies are resolved during compilation, reducing the runtime size
+The file configuratin use to mange this module and devserver
+1) define the entry point (from where the application start)
+2) resolve file detail (like if fie not find)
+3) add module role for file base liek (use|exlude|test)
+4) define the root url and defined the server configuratin
+5) plugin u can add

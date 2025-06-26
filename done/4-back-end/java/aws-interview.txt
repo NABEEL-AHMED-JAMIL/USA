@@ -1,0 +1,35 @@
+☁️ Compute Set
+1) EC2: (Elastic Compute Cloud)	Virtual servers in the cloud.
+2) Lambda:	Serverless computing — run code in response to events.
+3) ECS: Container orchestration (ECS)
+4) Elastic Beanstalk: Easy deployment of apps (managed environment over EC2).
+5) EKS: Managed Kubernetes service.
+
+🛢️ Storage Set
+1) S3 (Simple Storage Service)	Object storage for files, backups, media.
+2) EBS (Elastic Block Store)	Block storage for EC2 volumes.
+3) EFS (Elastic File System)	Shared file system (like NFS).
+
+🛠️ DevOps & Management Set
+CloudFormation	Infrastructure as code (IaC).
+CloudWatch	Monitoring and logging.
+CodePipeline	CI/CD pipeline automation.
+CodeBuild	Build and test code.
+
+🛡️ Security & Identity Set
+IAM (Identity and Access Management)	Users, roles, permissions, policies.
+Secrets Manager / Parameter Store	Store credentials and sensitive data securely.
+
+🗃️ Database Set
+RDS	Managed SQL databases (MySQL, PostgreSQL, Oracle, etc.).
+Redshift	Data warehouse for analytics.
+ElastiCache	Redis/Memcached for caching.
+
+📡 Networking Set
+VPC	Virtual network (subnets, routing, firewalls).
+Route 53	DNS and domain registration.
+API Gateway	Manage APIs for your backends (especially Lambda).
+CloudFront	CDN to cache and deliver content fast.
+
+🧠 AI & Analytics Set
+Athena	Query data in S3 using SQL.

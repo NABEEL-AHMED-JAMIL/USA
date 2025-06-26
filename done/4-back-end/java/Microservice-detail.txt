@@ -1,0 +1,57 @@
+Q: What is Resilience4j?
+A: Resilience4j is a lightweight fault tolerance library designed for functional programming.
+Resilience4j provides higher-order functions (decorators) to enhance any functional interface, 
+lambda expression or method reference with a Circuit Breaker, Rate Limiter, Retry or Bulkhead.
+
+---
+Replacement of Hystric
+In Hystrix calls to external systems have to be wrapped in a HystrixCommand
+---
+
+Q: What is Feign Client?
+A: Feign Client is a declarative HTTP client that simplifies making web service calls in Java applications
+especially in Spring Cloud microservice architectures.
+Instead of manually writing code to make HTTP requests using RestTemplate or WebClient, 
+you just declare an interface, and Feign takes care of the rest.
+
+
+Q: Resilience4j feature & modules
+A: Here is resilience featue
+1) Circuit Breaker (fault tolerance)
+2) Rate Limite (block too frequent request)
+3) Time Limiter (Set a limit when calling remote opertion)
+4) Retry Mechanism (Automatically retry a failed remote opertion)
+5) Bulkhead (Avoid too many concurrent request)
+6) Cache (Store results of costly remote operations)
+7) Fallback (Provides a default response when something goes wrong).
+
+
+Q: How we can deploy multiple applicaiton in ngix.
+A: 
+server {
+
+    listen 80;
+
+    server_name yourdomain.com;
+	***[Base hard deinfed with location like 'app1', 'app2']
+    location /app1/ {
+        root /var/www/;
+        index index.html;
+        try_files $uri $uri/ /app1/index.html;
+    }
+
+    location /app2/ {
+        root /var/www/;
+        index index.html;
+        try_files $uri $uri/ /app2/index.html;
+    }
+}
+Visit http://yourdomain.com/app1/ for App 1
+Visit http://yourdomain.com/app2/ for App 2
+
+
+Q: Security Groups (SG):
+Security groups are attached to EC2 instances or other resources like load balancers or RDS instances.
+They act as a virtual firewall for controlling inbound and outbound traffic.
+Inbound: Controls incoming traffic to the instance.
+Outbound: Controls outgoing traffic from the instance.

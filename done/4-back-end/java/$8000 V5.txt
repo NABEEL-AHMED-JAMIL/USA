@@ -1,0 +1,148 @@
+JDBC stands for Java Database Connectivity.
+JDBC is a Java API to connect and execute the query with the database.
+JDBC API uses JDBC drivers to connect with the database.
+These steps are as follows:
+Register the Driver class (Class.forName("oracle.jdbc.driver.OracleDriver");  )
+Create connection (Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","password"); )
+Create statement (Statement stmt=con.createStatement();)
+Execute queries (ResultSet rs=stmt.executeQuery("select * from emp");  )
+Close connection (con.close();)
+
+Driver interface
+Connection interface
+Statement interface
+PreparedStatement interface
+CallableStatement interface
+ResultSet interface
+
+***The try-with-resources statement automatically closes the resources and eliminates the need for a finally block to close them manually.
+try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+	String line;
+	while ((line = br.readLine()) != null) {
+		System.out.println(line);
+	}
+} catch (IOException e) {
+	System.out.println("An error occurred: " + e.getMessage());
+}
+
+***Java equals() and hashCode() methods are present in Object class.
+So every java class gets the default implementation of equals() and hashCode().
+equals method compares whether two object values are equal or not
+public boolean equals(Object obj) {
+    return (this == obj);
+}
+If two objects are equal according to equals() method, then their hash code must be same.
+If two objects are unequal according to equals() method, their hash code are not required to be different.
+Their hash code value may or may-not be equal.
+--
+***If o1.equals(o2), then o1.hashCode() == o2.hashCode() should always be true.
+***If o1.hashCode() == o2.hashCode is true, it doesn’t mean that o1.equals(o2) will be true.
+ 
+ 
+***The Collection framework represents a unified architecture for storing and manipulating a group of objects. It has:
+Interfaces and its implementations, i.e., classes
+Algorithm
+
+
+Iterator interface
+Iterator interface provides the facility of iterating the elements in a forward direction only.
+public boolean hasNext()
+public Object next()
+public void remove()
+
+
+List Interface
+interface is the child interface of Collection interface
+store the ordered collection of objects. It can have duplicate values.
+implemented by the classes ArrayList, LinkedList, Vector, and Stack.
+
+ArrayList
+ArrayList class implements the List interface.
+uses a dynamic array to store the duplicate element of different data types.
+maintains the insertion order and non-synchronized.
+
+LinkedList
+LinkedList implements the Collection interface.
+It uses a doubly linked list internally to store the elements.
+It can store the duplicate elements.
+It maintains the insertion order and is not synchronized.
+In LinkedList, the manipulation is fast because no shifting is required.
+
+Vector
+Vector uses a dynamic array to store the data elements.
+It is similar to ArrayList. However,
+It is synchronized and contains many methods that are not the part of Collection framework.
+
+Stack
+The stack is the subclass of Vector. It implements the last-in-first-out data structure.
+methods of Vector class contain and also have its on method peek and push.
+
+Queue Interface
+Queue interface maintains the first-in-first-out order. 
+It can be defined as an ordered list that is used to hold the elements which are about to be processed.
+There are various classes like PriorityQueue, Deque, and ArrayDeque which implements the Queue interface.
+
+PriorityQueue
+holds the elements or objects which are to be processed by their priorities
+*PriorityQueue doesn't allow null values to be stored in the queue.
+
+Deque Interface
+Deque, we can remove and add the elements from both the side
+
+ArrayDeque
+ArrayDeque class implements the Deque interface. It facilitates us to use the Deque.
+Unlike queue, we can add or delete the elements from both the ends.
+ArrayDeque is faster than ArrayList and Stack and has no capacity restrictions.
+
+Set Interface
+It represents the unordered set of elements which doesn't allow us to store the duplicate items. 
+We can store at most one null value in Set. Set is implemented by HashSet, LinkedHashSet, and TreeSet.
+
+HashSet
+HashSet class implements Set Interface.
+HashTable to store a value uses a hash table for storage (O(1))
+Hashing is used to store the elements in the HashSet. (algo hashfunction)
+
+
+LinkedHashSet
+LinkedList implementation of Set Interface.
+contains unique elements
+maintains the insertion order and permits null elements.
+
+TreeSet
+uses a tree for storage.
+contains unique elements
+retrieval time of TreeSet is quite fast
+***TreeSet stored in ascending order.(by defult its ordered in assending)
+
+
+Map Interface
+map contains values on the basis of key,
+A Map is useful if you have to search, update or delete elements on the basis of a key.
+HashMap and LinkedHashMap allow null keys and values, but TreeMap doesn't allow any null key or value.
+use the hash function to gerneate the hash
+static final int hash(Object key) {
+	int h;
+	return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+}
+A Map doesn't allow duplicate keys, but you can have duplicate values.
+***HashMap and LinkedHashMap allow null keys and values, but TreeMap doesn't allow any null key or value.
+HashMap is the implementation of Map, but it doesn't maintain any order
+LinkedHashMap is the implementation of Map. It inherits HashMap class. It maintains insertion order.
+TreeMap is the implementation of Map and SortedMap. It maintains ascending ord
+
+
+Hashtable class
+A Hashtable is an array of a list. Each list is known as a bucket. 
+The position of the bucket is identified by calling the hashcode() method. A Hashtable contains values based on the key.
+Java Hashtable class contains unique elements.
+Java Hashtable class doesn't allow null key or value.
+Java Hashtable class is synchronized.
+
+
+can we apply stream on map?
+yes we can applay the stream on entryset*****
+public Map<String, String> sortMapByValue(final Map<String, String> map) {
+	return map.entrySet().stream().sorted((s1, s2) -> s2.getValue().length() - s1.getValue().length())
+			.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+}

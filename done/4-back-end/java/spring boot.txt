@@ -1,0 +1,6 @@
+Spring Interview Qustion
+------------------------
+Q:- What is a Spring Framework in Java?
+A:- Spring Framework is a special type of light weight open source software built on top of Servlet & JSP technologies.
+It is used to develop a complete Java application without letting developers worry about frequently used logics.
+=>* Modular Architecture: It has multiple modules, we can use each module independently as per our requirement.
