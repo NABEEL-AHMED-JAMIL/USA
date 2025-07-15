@@ -21,6 +21,7 @@ public class CompletableFutureExample {
                 }
             }
         });
+        // you don't need the extra -> then applay then applya then con
         System.out.println(future.get());
         //
         CompletableFuture<String> welComText = CompletableFuture.supplyAsync(() -> {

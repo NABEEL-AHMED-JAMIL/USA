@@ -3,7 +3,6 @@ package coding.col;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ListCollectionExam {
@@ -78,7 +77,7 @@ public class ListCollectionExam {
         //this.demoThreadForArray(data3);
 
         // Always correct. No crash. No corruption.
-        List<Integer> data4 = new Vector<>();
+        List<Integer> data4 = new ArrayList<>();
         this.demoThreadForArray(data4);
     }
 
