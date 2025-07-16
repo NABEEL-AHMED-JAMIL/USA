@@ -1,4 +1,4 @@
-package coding.strings;
+package coding.prt;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -21,9 +21,8 @@ public class CompletableFutureExample {
                 }
             }
         });
-        // you don't need the extra -> then applay then applya then con
         System.out.println(future.get());
-        //
+        // supply return value so we only apply then apply
         CompletableFuture<String> welComText = CompletableFuture.supplyAsync(() -> {
             return "Apple";
         }).thenApply(name -> {
@@ -32,6 +31,5 @@ public class CompletableFutureExample {
             return "greeting";
         });
         System.out.println(welComText.get());
-
     }
 }

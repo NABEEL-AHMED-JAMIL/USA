@@ -1,4 +1,4 @@
-package coding.strings;
+package coding.prt;
 
 public class SynchronizedCounter {
 

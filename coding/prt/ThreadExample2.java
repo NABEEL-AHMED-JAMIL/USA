@@ -1,4 +1,4 @@
-package coding.strings;
+package coding.prt;
 
 import java.util.Arrays;
 import java.util.List;
