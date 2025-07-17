@@ -22,6 +22,9 @@ public class FinalInterview {
         Character.isWhitespace('c');
         Character.isLowerCase('c');
         Character.isUpperCase('W');
+        System.out.println(Integer.compare(10, 12));
+        System.out.println(Double.compare(10, 12));
+        System.out.println(Float.compare(10, 12));
         System.out.println(Integer.valueOf("1265"));
         System.out.println(Integer.parseInt("12655"));
         System.out.println("apple value".replaceAll("\\s", ""));
@@ -64,7 +67,7 @@ public class FinalInterview {
         for (int i=0; i<chCode.length; i++) {
             char ch = (char) i;
             int count = chCode[ch];
-            if (count >0) {
+            if (count > 0) {
                 System.out.println("Ch " + ch + " Count " + count);
             }
         }
@@ -86,7 +89,7 @@ public class FinalInterview {
         String inputStr = "iloveusailoveusa";
         Map<Character, Long> data = inputStr.chars()
             .mapToObj(value -> (char) value)
-            .collect(Collectors.groupingBy(character -> character, Collectors.counting()));
+            .collect(Collectors.groupingBy(ch -> ch, Collectors.counting()));
         System.out.println(data);
     }
 
@@ -117,7 +120,7 @@ public class FinalInterview {
     }
 
     public static void findLargeNumber() {
-        long[] arrNum = {12, 41, 159, -58, 466, 10};
+        long[] arrNum = { 12, 41, 159, -58, 466, 10 };
         long largeNumber = Long.MIN_VALUE;
         for (long num : arrNum) {
             if (num > largeNumber) {
@@ -131,7 +134,7 @@ public class FinalInterview {
      * V.V IMP Question
      * */
     public static void findSecondLargeNumber() {
-        long[] arrNum = {12, 41, 159, -58, 466, 10};
+        long[] arrNum = { 12, 41, 159, -58, 466, 10 };
         long largeNumber = Long.MIN_VALUE;
         long secondNumber = Long.MIN_VALUE;
         for (long num : arrNum) {
@@ -149,7 +152,7 @@ public class FinalInterview {
      * V.V IMP Question
      * */
     public static void findThirdLargeNumber() {
-        long[] arrNum = {12, 41, 159, -58, 466, 10};
+        long[] arrNum = { 12, 41, 159, -58, 466, 10 };
         long largeNumber = Long.MIN_VALUE;
         long secondNumber = Long.MIN_VALUE;
         long thirdNumber = Long.MIN_VALUE;
@@ -172,9 +175,9 @@ public class FinalInterview {
      * V.V IMP Question
      * */
     public static void findKthLargeNumber() {
-        long[] arrNum = {12, 41, 159, -58, 466, 10};
+        long[] arrNum = { 12, 41, 159, -58, 466, 10 };
         long kthLargeNumber = 3;
-        // min heap
+        // min heap [Implements a min-heap by default (i.e., the smallest element comes first).]
         PriorityQueue<Long> minHeap = new PriorityQueue<>();
         for (long num : arrNum) {
             minHeap.offer(num);
@@ -359,8 +362,7 @@ public class FinalInterview {
     // use stream to distinct
     public static void removeDuplicatesV3() {
         String input = "abcdefghijklmnopqrstuvwxyz12312";
-        String newStr = Arrays.asList(input.split(""))
-             .stream().distinct().collect(Collectors.joining());
+        String newStr = Arrays.asList(input.split("")).stream().distinct().collect(Collectors.joining());
         System.out.println(newStr);
     }
 
@@ -444,25 +446,18 @@ public class FinalInterview {
             new Employee(4, "Diana", "Finance", 65000)
         );
         // group by department
-        Map<String, List<Employee>> employeesGroup = strArray.stream()
-            .collect(Collectors.groupingBy(Employee::department));
+        Map<String, List<Employee>> employeesGroup = strArray.stream().collect(Collectors.groupingBy(Employee::department));
         System.out.println(employeesGroup);
         // group by count
-        Map<String, Long> employeesCount = strArray.stream()
-            .collect(Collectors.groupingBy(Employee::department, Collectors.counting()));
+        Map<String, Long> employeesCount = strArray.stream().collect(Collectors.groupingBy(Employee::department, Collectors.counting()));
         System.out.println(employeesCount);
-        //
         // 1) employee who has second-highest salary
         Optional<Employee> highSalary = strArray.stream().sorted(Comparator.comparing(Employee::salary)).findFirst();
         System.out.println(highSalary.get());
-//        2) list of employee and sort them by their salary
-//        3) highest salary in each department
-//        4) average salary in all departments
-//        5) Employee who stays in Chennai and sort them by their names
-//        6) department who is having maximum number of employee
     }
 
     public static void main(String[] args) {
-        employeeWithStream();
+        //employeeWithStream();
+        System.out.println(Integer.compare(10, 12));
     }
 }

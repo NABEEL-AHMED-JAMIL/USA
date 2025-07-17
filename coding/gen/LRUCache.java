@@ -29,7 +29,6 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
         cache.get(1); // Access key 1
         cache.put(4, "Four"); // Evicts key 2 (least recently used)
         System.out.println(cache); // Output: {3=Three, 1=One, 4=Four}
-
     }
 
 }

@@ -30,34 +30,9 @@ public class StreamExamples {
         List<String> limitedName = names.stream().limit(3).collect(Collectors.toList());
         System.out.println("Limit names " + limitedName);
         List<String> skipName = names.stream().skip(3).collect(Collectors.toList());
-        System.out.println("Skip names " + limitedName);
+        System.out.println("Skip names " + skipName);
         // 7. Count elements matching condition
         Long countA = names.stream().filter(name -> name.startsWith("A")).count();
         System.out.println("Count of names starting with A: " + countA);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
