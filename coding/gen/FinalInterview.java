@@ -22,6 +22,7 @@ public class FinalInterview {
         Character.isWhitespace('c');
         Character.isLowerCase('c');
         Character.isUpperCase('W');
+        System.out.println(Character.getNumericValue('1'));
         System.out.println(Integer.compare(10, 12));
         System.out.println(Double.compare(10, 12));
         System.out.println(Float.compare(10, 12));
@@ -29,6 +30,23 @@ public class FinalInterview {
         System.out.println(Integer.parseInt("12655"));
         System.out.println("apple value".replaceAll("\\s", ""));
         System.out.println(String.join(" ", "apple", "banana", "dmp"));
+    }
+
+    /**
+     * V.V IMP Question
+     * */
+    public static void fizzBuzz() {
+        for (int i=0; i<100; i++) {
+            if (i % 3 == 0 && i % 5 == 0) {
+                System.out.println("FizzBuzz");
+            } else if (i % 3 == 0) {
+                System.out.println("Fizz");
+            } else if (i % 5 == 0) {
+                System.out.println("Buzz");
+            } else {
+                System.out.println(i);
+            }
+        }
     }
 
     public static void printJointWithLimitString() {
@@ -114,7 +132,8 @@ public class FinalInterview {
         String inputStr = "iloveuuul";
         List<Character> duplicate = inputStr.chars().mapToObj(value -> (char) value)
             .collect(Collectors.groupingBy(character -> character, Collectors.counting()))
-            .entrySet().stream().filter(entry -> entry.getValue() > 1).map(Map.Entry::getKey)
+            .entrySet()
+            .stream().filter(entry -> entry.getValue() > 1).map(Map.Entry::getKey)
             .collect(Collectors.toList());
         System.out.println(duplicate);
     }
@@ -423,6 +442,8 @@ public class FinalInterview {
     public static void findKthLongStringV2() {
         List<String> strArray = Arrays.asList("apple", "asdfasdfadfa", "adsfadfa", "awe", "awer");
         int kthLong = 1;
+        // we can use comparator for custom queue
+        // new PriorityQueue<Employee>(7, comparator);
         PriorityQueue<Integer> indexHeap = new PriorityQueue<>();
         for (String str : strArray) {
             indexHeap.offer(str.length());
@@ -431,6 +452,78 @@ public class FinalInterview {
             }
         }
         System.out.println(indexHeap.peek());
+    }
+
+    /**
+     * V.V IMP Question
+     * */
+    public static void checkAnagramsV1() {
+        String str1 = "listen";
+        String str2 = "silent";
+        char[] strArray1 = str1.toCharArray();
+        char[] strArray2 = str2.toCharArray();
+        Arrays.sort(strArray1);
+        Arrays.sort(strArray2);
+        if (!Arrays.equals(strArray1, strArray2)) {
+            System.out.println("No Anagrams");
+        } else {
+            System.out.println("Anagrams");
+        }
+    }
+
+    /**
+     * V.V IMP Question
+     * */
+    public static void checkAnagramsV2() {
+        String str1 = "listen";
+        String str2 = "silent";
+        // lop on str1
+        Map<Character, Integer> map = new HashMap<>();
+        for (char ch : str1.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+        // loop on str2 to check value is there or not
+        boolean isNotAnagram = false;
+        for (char ch: str2.toCharArray()) {
+            if (!map.containsKey(ch)) {
+                isNotAnagram = true;
+                break;
+            };
+            map.put(ch, map.get(ch)-1);
+            if (map.get(ch) == 0) {
+                map.remove(ch);
+            }
+        }
+        if (isNotAnagram) {
+            System.out.println("No Anagrams");
+        } else {
+            System.out.println("Anagrams");
+        }
+    }
+
+    /**
+     * V.V IMP Question
+     * */
+    public static void checkAnagramsV3() {
+        String str1 = "listen";
+        String str2 = "silant";
+        char[] charCount = new char[256];
+        for (int i=0; i<str1.length(); i++) {
+            charCount[str1.charAt(i)]++;
+            charCount[str2.charAt(i)]--;
+        }
+        boolean isAnagram = true;
+        for (int i=0; i<charCount.length; i++) {
+            if (charCount[i] != 0) {
+                isAnagram = false;
+                break;
+            }
+        }
+        if (isAnagram) {
+            System.out.println("Anagrams");
+        } else {
+            System.out.println("No Anagrams");
+        }
     }
 
     public static void findEvenLengthAndPrint() {
@@ -456,8 +549,27 @@ public class FinalInterview {
         System.out.println(highSalary.get());
     }
 
+    public static void swapIntegerWithOut3rdVariable() {
+        int a = 10;
+        int b = 20;
+        a = a + b; // 30
+        b = a - b; // 30-20 = 10
+        System.out.println(b);
+        a = a - b; // 30-10 = 20
+        System.out.println(a);
+    }
+
+    public static void swapStringWithOut3rdVariable() {
+        String a = "apple";
+        String b = "banana";
+        a = a+b; // applebanana
+        b = a.substring(0, b.length()-1); // apple
+        System.out.println(b);
+        a = a.substring(b.length()); // banana
+        System.out.println(a);
+    }
+
     public static void main(String[] args) {
-        //employeeWithStream();
-        System.out.println(Integer.compare(10, 12));
+        swapStringWithOut3rdVariable();
     }
 }
