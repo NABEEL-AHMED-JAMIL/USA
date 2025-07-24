@@ -65,28 +65,22 @@ public class Person {
             new Person("Judy", 19, "New York")
         );
         // by city
-        Map<String, List<Person>> byCity = people.stream()
-            .collect(Collectors.groupingBy(Person::getCity));
+        Map<String, List<Person>> byCity = people.stream().collect(Collectors.groupingBy(Person::getCity));
         System.out.println(byCity);
         // by age
-        Map<Integer, List<Person>> byAge = people.stream()
-            .collect(Collectors.groupingBy(Person::getAge));
+        Map<Integer, List<Person>> byAge = people.stream().collect(Collectors.groupingBy(Person::getAge));
         System.out.println(byAge);
         // v.v-imp
-        Map<String, Long> countByCity = people.stream()
-            .collect(Collectors.groupingBy(Person::getCity, Collectors.counting()));
+        Map<String, Long> countByCity = people.stream().collect(Collectors.groupingBy(Person::getCity, Collectors.counting()));
         System.out.println(countByCity);
         // [city -> [name, name2m name3]]
-        Map<String, List<String>> nameOfCity = people.stream()
-            .collect(Collectors.groupingBy(Person::getCity, Collectors.mapping(Person::getName, Collectors.toList())));
+        Map<String, List<String>> nameOfCity = people.stream().collect(Collectors.groupingBy(Person::getCity, Collectors.mapping(Person::getName, Collectors.toList())));
         System.out.println(nameOfCity);
         // Group by age -> (Young/Old)
-        Map<String, List<Person>> groupAge = people.stream()
-            .collect(Collectors.groupingBy(person -> person.getAge() < 30 ? "Young": "Old"));
+        Map<String, List<Person>> groupAge = people.stream().collect(Collectors.groupingBy(person -> person.getAge() < 30 ? "Young": "Old"));
         System.out.println(groupAge);
         // Group by age
-        Map<String, Map<Integer, List<Person>>> groupByAge = people.stream()
-            .collect(Collectors.groupingBy(o -> o.getCity(), Collectors.groupingBy(Person::getAge)));
+        Map<String, Map<Integer, List<Person>>> groupByAge = people.stream().collect(Collectors.groupingBy(o -> o.getCity(), Collectors.groupingBy(Person::getAge)));
         System.out.println(groupByAge);
     }
 }

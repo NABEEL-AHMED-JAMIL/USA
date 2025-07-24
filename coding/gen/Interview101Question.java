@@ -11,8 +11,7 @@ public class Interview101Question {
         String reverse = "reverse";
         char[] charRev = new char[reverse.length()];
         for (int i = reverse.length()-1; i>=0; i--) {
-            charRev[index] = reverse.charAt(i);
-            index++;
+            charRev[index++] = reverse.charAt(i);
         }
         System.out.println(charRev);
     }
@@ -77,23 +76,6 @@ public class Interview101Question {
         } else {
             System.out.println("No Equality");
         }
-    }
-
-    /**
-     * V.V IMP Question
-     * */
-    public static void anaGramArray() {
-        String text1 = "Mother In Law";
-        String text2 = "Hitler Woman";
-        List<Character> textArray1 = text1.chars()
-            .filter(value -> !Character.isWhitespace(value))
-            .mapToObj(value -> Character.toLowerCase((char) value))
-            .sorted(Character::compareTo).toList();
-        List<Character> textArray2 = text2.chars()
-            .filter(value -> !Character.isWhitespace(value))
-            .mapToObj(value -> Character.toLowerCase((char) value))
-            .sorted(Character::compareTo).toList();
-        System.out.println(textArray1.equals(textArray2) ? "AnaGram": "No Anagram");
     }
 
     /**

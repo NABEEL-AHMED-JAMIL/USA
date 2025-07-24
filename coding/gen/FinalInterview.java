@@ -199,6 +199,7 @@ public class FinalInterview {
         // min heap [Implements a min-heap by default (i.e., the smallest element comes first).]
         PriorityQueue<Long> minHeap = new PriorityQueue<>();
         for (long num : arrNum) {
+            // add the value and its size 4>3 = true then pool the small value
             minHeap.offer(num);
             if (minHeap.size() > kthLargeNumber) {
                 minHeap.poll();
@@ -325,7 +326,7 @@ public class FinalInterview {
     /**
      * V.V IMP Question
      * */
-    public static void countOccurrencesOfACertainCharacterV1() {
+    public static void countOccurrencesOfCertainCharacterV1() {
         String input = "abcdefghijklmnopqrstuvwxyz12312";
         int count = 0;
         char certainCharacter = '1';
@@ -524,6 +525,23 @@ public class FinalInterview {
         } else {
             System.out.println("No Anagrams");
         }
+    }
+
+    /**
+     * V.V IMP Question
+     * */
+    public static void checkAnagramsV4() {
+        String text1 = "Mother In Law";
+        String text2 = "Hitler Woman";
+        List<Character> textArray1 = text1.chars()
+                .filter(value -> !Character.isWhitespace(value))
+                .mapToObj(value -> Character.toLowerCase((char) value))
+                .sorted(Character::compareTo).toList();
+        List<Character> textArray2 = text2.chars()
+                .filter(value -> !Character.isWhitespace(value))
+                .mapToObj(value -> Character.toLowerCase((char) value))
+                .sorted(Character::compareTo).toList();
+        System.out.println(textArray1.equals(textArray2) ? "AnaGram": "No Anagram");
     }
 
     public static void findEvenLengthAndPrint() {
