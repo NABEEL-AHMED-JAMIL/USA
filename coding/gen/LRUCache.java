@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * V.V IMP Question For Interview
+ * Least Recently Used (LRU) cache
  * */
 public class LRUCache<K, V> extends LinkedHashMap<K, V> {
 
